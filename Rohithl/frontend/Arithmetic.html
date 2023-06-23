@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Arithmetic Operations</title>
+  <script>
+    function calculate() {
+      // Get input values
+      var num1 = parseInt(document.getElementById("num1").value);
+      var num2 = parseInt(document.getElementById("num2").value);
+
+      // Get selected operation
+      var operation = document.querySelector('input[name="operation"]:checked').value;
+
+      // Perform arithmetic operations based on the selected operation
+      var result;
+      switch (operation) {
+        case "add":
+          result = num1 + num2;
+          break;
+        case "subtract":
+          result = num1 - num2;
+          break;
+        case "multiply":
+          result = num1 * num2;
+          break;
+        case "divide":
+          result = num1 / num2;
+          break;
+        default:
+          result = "Invalid operation";
+          break;
+      }
+
+      // Display the result
+      document.getElementById("result").innerHTML = "Result: " + result;
+    }
+  </script>
+</head>
+<body>
+  <h1>Arithmetic Operations</h1>
+  <label for="num1">Number 1:</label>
+  <input type="integer" id="num1"><br><br>
+  <label for="num2">Number 2:</label>
+  <input type="integer" id="num2"><br><br>
+  <input type="radio" name="operation" value="add" checked>Addition
+  <input type="radio" name="operation" value="subtract">Subtraction
+  <input type="radio" name="operation" value="multiply">Multiplication
+  <input type="radio" name="operation" value="divide">Division<br><br>
+  <button onclick="calculate()">Calculate</button><br><br>
+  <div id="result"></div>
+</body>
+</html>
+

@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>validationform</title>
+<style>
+h3{
+ text-align: center;
+ }
+ form{
+    text-align: center;
+    display:flex;
+    justify-content: center;
+ }
+ div{
+ border-style:solid;
+ border-color:black;
+ }
+ </style>
+<script>
+function validateform(){  
+var firstName= document.getElementById("i1").value;
+var lastName= document.getElementById("i2").value;
+var username=document.getElementById("i3").value;
+var password=document.getElementById("i4").value;
+var confirmPassword= document.getElementById("i5").value;
+var email=document.getElementById("i7").value;
+var phno=document.getElementById("i8").value;
+var birthDate=document.getElementById("i6").value;
+var address= document.getElementById("i17").value;
+var lang =document.getElementsByName("lang");
+var district=document.getElementById("i16").value;
+var pin = document.getElementById("i18").value;
+var regular=/^[a-zA-Z]*$/;
+var checkbox = document.getElementById("i15");
+
+if (firstName == "" || !regular.test(firstName)) {
+        alert("Please enter First Name with only characters");
+        return false;
+    } else if (lastName == "" || !regular.test(lastName)) {
+        alert("Please enter Last Name with only characters");
+        return false;
+    } else if (username == "" || /^\d*$/.test(username) || /\s/.test(username)) {
+        alert("Please enter a valid username without any numbers or spaces");
+        return false;
+    } else if (password == "") {
+        alert("Please enter your password");
+        return false;
+    } else if (password.length < 8 || password.length > 12) {
+        alert("Password length should be between 8 and 12 characters");
+        return false;
+    } else if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(password))) {
+        alert("The password should contain at least one capital letter, one special character, and a digit");
+        return false;
+    } else if (confirmPassword != password || confirmPassword == "") {
+        alert("Enter Confirm Password or Password doesn't match");
+        return false;
+    } else if (email == "" || !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
+    } else if (phno.length !== 10 || !/^[6-9]\d{9}$/.test(phno)) {
+        alert("Please enter a valid 10-digit phone number starting with 6, 7, 8, or 9");
+        return false;
+    } else if (birthDate == "") {
+        alert("Please enter your date of birth");
+        return false;
+    } else if (address == "") {
+        alert("Please enter your address");
+        return false;
+    } else {
+        var isChecked = false;
+        for (var i = 0; i < lang.length; i++) {
+            if (lang[i].checked) {
+                isChecked = true;
+                break;
+            }
+        }
+        if (!isChecked) {
+            alert("Please select at least one language");
+            return false;
+        }
+    }
+   
+    if (district == "Default") {
+        alert("Please select your District");
+        return false;
+    } else if (!/^\d+$/.test(pin)) {
+        alert("ZIP Code should contain only numeric digits");
+        return false;
+    }
+}
+</script>
+</head>
+<h3>REGISTRATION FORM</h3>
+<form name="form1"method="post" onsubmit="return validateform()">
+<div>
+<table>
+<br><br>
+<tr><td>First Name:<input type="text" id="i1"/></td></tr><br><br>
+<tr><td>Last Name:<input type="text" id="i2"/><tr><td><br><br>
+<tr><td>User Name:<input type="text" id="i3"/><tr><td><br><br>
+<tr><td>Password:<input type="password" id="i4"/><tr><td><br><br>
+<tr><td>Confirm Password:<input type="password" id="i5"/><tr><td><br><br>
+<tr><td>DOB:<input type="date" id="i6"/><tr><td><br><br>
+<tr><td>Email:<input type="email" id="i7"/><tr><td><br><br>
+<tr><td>Phone Number:<input type="tel" id="i8"/><tr><td><br><br>
+<tr><td>Gender:<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female<tr><td><br><br>
+<tr><td>Languages Known:<br>
+<input type="checkbox" name="lang" id="i11" value="Java">Java
+<input type="checkbox" name="lang" id="i12" value="python">Python<tr><td>
+<tr><td><input type="checkbox" name="lang" id="i13" value="CSS">CSS
+<input type="checkbox" name="lang" id="i14" value="HTML">HTML<br>
+<input type="checkbox" name="lang" id="i15" value="JavaScript">JavaScript<br><br><tr><td>
+<tr><td>Select a State:<tr><td>
+<select name="states" id="i16">
+<option value="">Select state</option>
+<option value="Andhra Pradesh">Andhra Pradesh</option>
+<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+<option value="Assam">Assam</option>
+<option value="Bihar">Bihar</option>
+<option value="Chandigarh">Chandigarh</option>
+<option value="Chhattisgarh">Chhattisgarh</option>
+<option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+<option value="Daman and Diu">Daman and Diu</option>
+<option value="Delhi">Delhi</option>
+<option value="Lakshadweep">Lakshadweep</option>
+<option value="Puducherry">Puducherry</option>
+<option value="Goa">Goa</option>
+<option value="Gujarat">Gujarat</option>
+<option value="Haryana">Haryana</option>
+<option value="Himachal Pradesh">Himachal Pradesh</option>
+<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+<option value="Jharkhand">Jharkhand</option>
+<option value="Karnataka">Karnataka</option>
+<option value="Kerala">Kerala</option>
+<option value="Madhya Pradesh">Madhya Pradesh</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Manipur">Manipur</option>
+<option value="Meghalaya">Meghalaya</option>
+<option value="Mizoram">Mizoram</option>
+<option value="Nagaland">Nagaland</option>
+<option value="Odisha">Odisha</option>
+<option value="Punjab">Punjab</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Sikkim">Sikkim</option>
+<option value="Tamil Nadu">Tamil Nadu</option>
+<option value="Telangana">Telangana</option>
+<option value="Tripura">Tripura</option>
+<option value="Uttar Pradesh">Uttar Pradesh</option>
+<option value="Uttarakhand">Uttarakhand</option>
+<option value="West Bengal">West Bengal</option>
+</select><br><br>
+<tr><td>Address:<br>
+<textarea id="i17" name="w3review" rows="4" cols="30"></textarea><br><br>
+<tr><td>Pincode:<input type="text" id="i18"/><br><br>
+<tr><td>Image:<input type="file" value="upload"/><br><br>
+<tr><td><input type="checkbox" id="i19" required> I agree to the terms and conditions<br><br>
+<input type="submit" value="Submit">
+<br><br><br>
+</div>
+</form>
+</html>

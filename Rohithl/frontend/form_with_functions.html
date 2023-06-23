@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>validationform</title>
+<style>
+h3{
+ text-align: center;
+ }
+ form{
+    text-align: center;
+    display:flex;
+    justify-content: center;
+ }
+ div{
+ border-style:solid;
+ border-color:black;
+ }
+ </style>
+<script>
+function validateFirstName() {
+  var firstName = document.getElementById("i1").value;
+  var regular = /^[a-zA-Z]*$/;
+  return firstName !== "" && regular.test(firstName);
+}
+
+function validateLastName() {
+  var lastName = document.getElementById("i2").value;
+  var regular = /^[a-zA-Z]*$/;
+  return lastName !== "" && regular.test(lastName);
+}
+
+function validateUsername() {
+  var username = document.getElementById("i3").value;
+  return username !== "" && /^\d*$/.test(username) && !/\s/.test(username);
+}
+
+function validatePassword() {
+  var password = document.getElementById("i4").value;
+  var passwordLength = password.length;
+  var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+  return password !== "" && passwordLength >= 8 && passwordLength <= 12 && regex.test(password);
+}
+
+function validateConfirmPassword() {
+  var confirmPassword = document.getElementById("i5").value;
+  var password = document.getElementById("i4").value;
+  return confirmPassword === password && confirmPassword !== "";
+}
+
+function validateEmail() {
+  var email = document.getElementById("i7").value;
+  var regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+  return email !== "" && regex.test(email);
+}
+
+function validatePhoneNumber() {
+  var phno = document.getElementById("i8").value;
+  var regex = /^[6-9]\d{9}$/;
+  return phno.length === 10 && regex.test(phno);
+}
+
+function validateBirthDate() {
+  var birthDate = document.getElementById("i6").value;
+  return birthDate !== "";
+}
+
+function validateAddress() {
+  var address = document.getElementById("i17").value;
+  return address !== "";
+}
+
+function validateLanguages() {
+  var lang = document.getElementsByName("lang");
+  var isChecked = false;
+  for (var i = 0; i < lang.length; i++) {
+    if (lang[i].checked) {
+      isChecked = true;
+      break;
+    }
+  }
+  return isChecked;
+}
+
+function validateDistrict() {
+  var district = document.getElementById("i16").value;
+  return district !== "Default";
+}
+
+function validatePincode() {
+  var pin = document.getElementById("i18").value;
+  return /^\d+$/.test(pin);
+}
+
+function validateForm() {
+  var validators = [
+    validateFirstName,
+    validateLastName,
+    validateUsername,
+    validatePassword,
+    validateConfirmPassword,
+    validateEmail,
+    validatePhoneNumber,
+    validateBirthDate,
+    validateAddress,
+    validateLanguages,
+    validateDistrict,
+    validatePincode
+  ];
+
+  for (var i = 0; i < validators.length; i++) {
+    if (!validators[i]()) {
+      alert("Please correct the errors in the form");
+      return false;
+    }
+  }
+
+  var checkbox = document.getElementById("i19");
+  if (!checkbox.checked) {
+    alert("Please agree to the terms and conditions");
+    return false;
+  }
+}
+
+</script>
+</head>
+<h3>REGISTRATION FORM</h3>
+<h3>REGISTRATION FORM</h3>
+<form name="form1" method="post">
+  <div>
+    <br><br>
+    First Name: <input type="text" id="i1" onblur="validateFirstName(this.value)"/><br><br>
+    Last Name: <input type="text" id="i2" onblur="validateLastName(this.value)"/><br><br>
+    User Name: <input type="text" id="i3" onblur="validateUsername(this.value)"/><br><br>
+    Password: <input type="password" id="i4" onblur="validatePassword(this.value)"/><br><br>
+    Confirm Password: <input type="password" id="i5" onblur="validateConfirmPassword(this.value)"/><br><br>
+    DOB: <input type="date" id="i6" onblur="validateBirthDate(this.value)"/><br><br>
+    Email: <input type="email" id="i7" onblur="validateEmail(this.value)"/><br><br>
+    Phone Number: <input type="tel" id="i8" onblur="validatePhoneNumber(this.value)"/><br><br>
+    Gender:
+    <input type="radio" name="gender" value="male">Male
+    <input type="radio" name="gender" value="female">Female<br><br>
+    Languages Known:<br>
+    <input type="checkbox" name="lang" id="i11" value="Java">Java
+    <input type="checkbox" name="lang" id="i12" value="python">Python
+    <input type="checkbox" name="lang" id="i13" value="CSS">CSS
+    <input type="checkbox" name="lang" id="i14" value="HTML">HTML<br>
+    <input type="checkbox" name="lang" id="i15" value="JavaScript">JavaScript<br><br>
+    Select a State:
+    <select name="states" id="i16" onblur="validateDistrict(this.value)">
+      <option value="">Select state</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+      <!-- Remaining options -->
+    </select><br><br>
+    Address:<br>
+    <textarea id="i17" name="w3review" rows="4" cols="30" onblur="validateAddress(this.value)"></textarea><br><br>
+    Pincode: <input type="text" id="i18" onblur="validatePincode(this.value)"/><br><br>
+    Image: <input type="file" value="upload"/><br><br>
+    <input type="checkbox" id="i19" required> I agree to the terms and conditions<br><br>
+    <input type="submit" value="Submit">
+    <br><br><br>
+  </div>
+</form>
+
+</html>
